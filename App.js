@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={{flex: 1, padding: 20}}>
     <View>
-      <Text>Oto start working</Text>
+      <Text>HOw are you doing</Text>
       <StatusBar style="auto" />
     </View>
     <View style={{flex: 1, flexGrow: 1,backgroundColor: 'blue'}}>
