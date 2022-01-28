@@ -1,35 +1,32 @@
 import React from "react";
+import styled from "styled-components";
 import { StyleSheet, StatusBar, SafeAreaView, Text, View, Platform } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
+
 import { PharmacyInfoCard } from "../components/pharmacy-info-card.component";
 
+
+const SafeArea = styled(SafeAreaView)`
+flex: 1;
+${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
+`;
+const SearchContainer = styled(View)`
+padding: ${(props) => props.theme.space[3]};
+background-color: ${(props) => props.theme.colors.bg.primary};
+`;
+const ListContainer = styled(View)`
+flex: 1;
+padding: ${(props) => props.theme.space[3]};
+background-color: ${(props) => props.theme.colors.bg.secondary};
+`;
+
 export const PharmacyScreen = () => (
-    <SafeAreaView style={styles.container}>
-        <View style={styles.searchbar}>
-            <Searchbar />
-        </View>
-        <View style={styles.lists}>
-            <PharmacyInfoCard />
-        </View>
-    </SafeAreaView>
+
+    <SafeArea>
+        <SearchContainer><Searchbar /></SearchContainer>
+        <ListContainer><PharmacyInfoCard /></ListContainer>
+    </SafeArea>
+
 )
 
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: StatusBar.currentHeight
-    },
-    searchbar: {
-        padding: 20,
-        backgroundColor: 'white'
-    },
-    lists: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: 'white'
-    }
-})
