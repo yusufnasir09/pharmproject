@@ -1,46 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, Image, View } from 'react-native';
-import styled from 'styled-components/native'
 import { SvgXml } from 'react-native-svg';
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { PharmacyCard, PharmacyCardCover, Section, SectionEnd, Rating, Info, Icon } from "./pharmacy-info-card.styles";
 
-import { Card } from 'react-native-paper';
-
-const PharmacyCard = styled(Card)`
-background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-const PharmacyCardCover = styled(Card.Cover)`
-padding: ${(props) => props.theme.space[3]};
-background-color: ${(props) => props.theme.colors.bg.secondary};
-`;
-const Section = styled(View)`
-flex-direction: row;
-align-items: center;
-`;
-const Rating = styled(View)`
-padding-top: ${(props) => props.theme.space[2]};
-padding-bottom: ${(props) => props.theme.space[2]};
-flex-direction: row;
-`;
-const SectionEnd = styled(View)`
-flex: 1;
-justify-content: flex-end;
-flex-direction: row;
-`;
-const Info = styled(View)`
-padding: ${(props) => props.theme.space[3]};
-`;
-const Address = styled(Text)`
-font-family: ${(props) => props.theme.fonts.body};
-font-size: ${(props) => props.theme.fontSizes.body};
-`;
-const Title = styled(Text)`
-font-family: ${(props) => props.theme.fonts.heading};
-font-size: ${(props) => props.theme.fontSizes.body};
-color: ${(props) => props.theme.colors.ui.primary};
-`;
 
 export const PharmacyInfoCard = ({ pharmacy = {} }) => {
     const {
@@ -59,7 +24,7 @@ export const PharmacyInfoCard = ({ pharmacy = {} }) => {
         <PharmacyCard elevation={5}>
             <PharmacyCardCover key={name} source={{ uri: photos[0] }} />
             <Info>
-                <Title>{name}</Title>
+                <Text variant="label">{name}</Text>
                 <Section>
                     <Rating>
                         {ratingArray.map(() => (
@@ -68,17 +33,17 @@ export const PharmacyInfoCard = ({ pharmacy = {} }) => {
                     </Rating>
                     <SectionEnd>
                         {isClosedTemporarily && (
-                            <Text variant="label" style={{ color: 'red', }}>CLOSED TEMORARILY</Text>
+                            <Text variant="label" style={{ color: 'red', }}><Text variant="error">CLOSED TEMORARILY</Text></Text>
                         )}
                         <Spacer position="left" size="medium">
                             {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
                         </Spacer>
                         <Spacer position="left" size="medium">
-                            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+                            <Icon source={{ uri: icon }} />
                         </Spacer>
                     </SectionEnd>
                 </Section>
-                <Address>{address}</Address>
+                <Text variant="body">{address}</Text>
             </Info>
         </PharmacyCard>
     );
