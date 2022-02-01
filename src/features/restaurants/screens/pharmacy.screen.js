@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { StatusBar, SafeAreaView, View, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
@@ -6,7 +6,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { PharmacyInfoCard } from "../components/pharmacy-info-card.component";
 
-
+import { PharmaciesContext } from "../../../services/pharmacies/pharmacies.context";
 
 const SearchContainer = styled(View)`
 padding: ${(props) => props.theme.space[3]};
@@ -18,18 +18,25 @@ const PharmacyList = styled(FlatList).attrs({
     }
 })``;
 
-export const PharmacyScreen = () => (
+export const PharmacyScreen = () => {
+    const { pharmacies, isLoading, error } = useContext(PharmaciesContext);
 
-    <SafeArea>
-        <SearchContainer><Searchbar /></SearchContainer>
+    return (
+        <SafeArea>
+            <SearchContainer><Searchbar /></SearchContainer>
 
-        <PharmacyList
-            data={[{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }, { name: 5 }, { name: 6 }, { name: 7 }, { name: 8 }, { name: 9 }, { name: 10 }]}
-            renderItem={() => <Spacer position="bottom" size="large"><PharmacyInfoCard /></Spacer>}
-            keyExtractor={(item) => item.name}
-        />
+            <PharmacyList
+                data={pharmacies}
+                renderItem={({ item }) => {
+                    return (
+                        <Spacer position="bottom" size="large"><PharmacyInfoCard pharmacy={item} /></Spacer>
+                    );
+                }}
+                keyExtractor={(item) => item.name}
+            />
 
-    </SafeArea>
+        </SafeArea>
 
-)
+    )
+}
 
