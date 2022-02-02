@@ -21,7 +21,7 @@ export const pharmaciesTransform = ({ results = [] }) => {
         return {
             ...pharmacy,
             isOpenNow: pharmacy.opening_hours && pharmacy.opening_hours.open_now,
-            isClosedTemporarily: pharmacy.business_status === "CLOSED TEMPORARILY",
+            isClosedTemporarily: pharmacy.business_status === "CLOSED_TEMPORARILY",
         };
     });
 
