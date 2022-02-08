@@ -14,10 +14,15 @@ export const LocationContextProvider = ({ children }) => {
     const onSearch = (searchKeyword) => {
         setIsLoading(true);
         setKeyword(searchKeyword);
-
+        if (!searchKeyword.length) {
+            // don't do anything
+            return;
+        }
+        console.log(searchKeyword);
         locationRequest(searchKeyword.toLowerCase()).then(locationTransform).then((result) => {
             setIsLoading(false);
             setLocation(result);
+            console.log(result);
         }).catch((err) => {
             setIsLoading(false);
             setError(err);
@@ -25,6 +30,6 @@ export const LocationContextProvider = ({ children }) => {
     }
 
     return (
-        <LocationContext.Provider value={{ isloading, location, error, keyword, search: () => null }}>{children}</LocationContext.Provider>
+        <LocationContext.Provider value={{ isloading, location, error, keyword, search: onSearch }}>{children}</LocationContext.Provider>
     )
 }
