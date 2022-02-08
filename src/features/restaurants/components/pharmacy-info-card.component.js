@@ -8,7 +8,7 @@ import { PharmacyCard, PharmacyCardCover, Section, SectionEnd, Rating, Info, Ico
 
 
 export const PharmacyInfoCard = ({ pharmacy }) => {
-    const ratingArray = Array.from(new Array(Math.ceil(pharmacy.rating)));
+    const ratingArray = Array.from(new Array(Math.floor(pharmacy.rating)));
     return (
         <PharmacyCard elevation={5}>
             <PharmacyCardCover key={pharmacy.name} source={{ uri: pharmacy.photos[0] }} />
@@ -17,7 +17,12 @@ export const PharmacyInfoCard = ({ pharmacy }) => {
                 <Section>
                     <Rating>
                         {ratingArray.map((_, i) => (
-                            <SvgXml key={`star-${pharmacy.placeId}-${i}`} xml={star} width={20} height={20} />
+                            <SvgXml
+                                key={`star-${pharmacy.placeId}-${i}`}
+                                xml={star}
+                                width={20}
+                                height={20}
+                            />
                         ))}
                     </Rating>
                     <SectionEnd>
