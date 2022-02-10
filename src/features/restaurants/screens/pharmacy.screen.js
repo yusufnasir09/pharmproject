@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
@@ -14,7 +14,7 @@ const PharmacyList = styled(FlatList).attrs({
     }
 })``;
 
-export const PharmacyScreen = () => {
+export const PharmacyScreen = ({ navigation }) => {
     const { pharmacies, isloading, error } = useContext(PharmaciesContext);
 
     return (
@@ -34,7 +34,10 @@ export const PharmacyScreen = () => {
                 data={pharmacies}
                 renderItem={({ item }) => {
                     return (
-                        <Spacer position="bottom" size="large"><PharmacyInfoCard pharmacy={item} /></Spacer>
+                        <TouchableOpacity onPress={() => navigation.navigate("PharmacyDetails", { pharmacy: item })}>
+                            <Spacer position="bottom" size="large"><PharmacyInfoCard pharmacy={item} /></Spacer>
+                        </TouchableOpacity>
+
                     );
                 }}
                 keyExtractor={(item) => item.name}

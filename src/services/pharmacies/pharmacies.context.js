@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { LocationContext } from "../locations/location.context";
 
 import { pharmaciesRequest, pharmaciesTransform } from "./pharmacies.service";
