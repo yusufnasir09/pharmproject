@@ -2,7 +2,7 @@ import React from "react";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { MapScreen } from "../../features/restaurants/screens/map.screen";
+import { MapScreen } from "../../features/map/screen/map.screen";
 import { SettingsScreen } from "../../features/restaurants/screens/settings.screen";
 import { PharmaciesNavigator } from "./pharmacies.navigator";
 

@@ -10,7 +10,7 @@ const PharmacyStack = createStackNavigator();
 export const PharmaciesNavigator = () => {
     return (
         <PharmacyStack.Navigator screenOptions={{
-            ...TransitionPresets.ModalSlideFromBottomIOS,
+            ...TransitionPresets.ModalFadeTransition,
             headerShown: false,
         }}>
             <PharmacyStack.Screen name="Pharmacies" component={PharmacyScreen} />
