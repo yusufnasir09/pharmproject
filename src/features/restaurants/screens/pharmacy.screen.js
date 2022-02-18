@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { View, FlatList, TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
@@ -6,7 +6,10 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { PharmacyInfoCard } from "../components/pharmacy-info-card.component";
 import { PharmaciesContext } from "../../../services/pharmacies/pharmacies.context";
+import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { Search } from "../components/search.component";
+import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
+
 
 const PharmacyList = styled(FlatList).attrs({
     contentContainerStyle: {
@@ -15,7 +18,10 @@ const PharmacyList = styled(FlatList).attrs({
 })``;
 
 export const PharmacyScreen = ({ navigation }) => {
-    const { pharmacies, isloading, error } = useContext(PharmaciesContext);
+    const { pharmacies, isloading } = useContext(PharmaciesContext);
+    const { favourites } = useContext(FavouritesContext);
+
+    const [isToggled, setIsToggled] = useState(false);
 
     return (
         <SafeArea>
@@ -28,8 +34,13 @@ export const PharmacyScreen = ({ navigation }) => {
                 </View>
             )}
 
-            <Search />
-
+            <Search isFavouritesToggled={isToggled} onFavouritesToggle={() => setIsToggled(!isToggled)} />
+            {isToggled && (
+                <FavouritesBar
+                    favourites={favourites}
+                    onNavigate={navigation.navigate}
+                />
+            )}
             <PharmacyList
                 data={pharmacies}
                 renderItem={({ item }) => {

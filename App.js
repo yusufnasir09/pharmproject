@@ -8,6 +8,7 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import AppLoading from 'expo-app-loading';
 import { LocationContextProvider } from './src/services/locations/location.context';
 import { PharmaciesContextProvider } from './src/services/pharmacies/pharmacies.context';
+import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
 
 import { Navigation } from './src/infrastructure/navigation/index';
 
@@ -25,12 +26,14 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <PharmaciesContextProvider>
-            <Navigation />
-          </PharmaciesContextProvider>
-        </LocationContextProvider>
-        <ExpoStatusBar style="auto" />
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <PharmaciesContextProvider>
+              <Navigation />
+            </PharmaciesContextProvider>
+          </LocationContextProvider>
+          <ExpoStatusBar style="auto" />
+        </FavouritesContextProvider>
       </ThemeProvider>
 
     </>

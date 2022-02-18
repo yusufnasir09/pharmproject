@@ -24,14 +24,14 @@ const Item = styled.View`
 const isAndroid = Platform.OS === "android";
 
 export const CompactPharmacyInfo = ({ pharmacy }) => {
-    const Image = isAndroid ? CompactWebview : CompactImage;
+  const Image = isAndroid ? CompactWebview : CompactImage;
 
-    return (
-        <Item>
-            <Image source={{ uri: pharmacy.photos[0] }} />
-            <Text center variant="caption" numberOfLines={3}>
-                {pharmacy.name}
-            </Text>
-        </Item>
-    );
+  return (
+    <Item>
+      <Image source={{ uri: pharmacy.photos[0] }} />
+      <Text center variant="caption" numberOfLines={3}>
+        {pharmacy.name}
+      </Text>
+    </Item>
+  );
 };
