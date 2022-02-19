@@ -10,5 +10,6 @@ const MyText = styled.Text`
 export const MapCallout = ({ pharmacy }) => (
     <CompactPharmacyInfo
         pharmacy={pharmacy}
+        isMap
     />
 );
