@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import { initializeApp, getApps } from 'firebase/app';
+import { getAuth } from "firebase/auth";
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from './src/infrastructure/theme';
@@ -23,12 +24,15 @@ const firebaseConfig = {
   appId: "1:189665770850:web:085bebb370236bae98003b"
 };
 
-if (getApps().length < 1) {
-  initializeApp(firebaseConfig);
-}
+
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app)
+
 
 
 export default function App() {
+
 
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
