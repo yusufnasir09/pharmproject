@@ -5,7 +5,7 @@ import { PharmaciesContextProvider } from "../../services/pharmacies/pharmacies.
 import { LocationContextProvider } from "../../services/locations/location.context";
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 import { MapScreen } from "../../features/map/screen/map.screen";
-import { SettingsScreen } from "../../features/restaurants/screens/settings.screen";
+import { SettingsNavigator } from "./settings.navigator";
 import { PharmaciesNavigator } from "./pharmacies.navigator";
 
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ export const AppNavigation = () => {
                             }}
                         />
                         <Tab.Screen name="Settings"
-                            component={SettingsScreen}
+                            component={SettingsNavigator}
                             options={{
                                 tabBarIcon: ({ color, size }) => (
                                     <MaterialCommunityIcons name="cog-outline" color={color} size={size} />
