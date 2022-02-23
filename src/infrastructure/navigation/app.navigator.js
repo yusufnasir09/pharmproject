@@ -7,6 +7,7 @@ import { FavouritesContextProvider } from "../../services/favourites/favourites.
 import { MapScreen } from "../../features/map/screen/map.screen";
 import { SettingsNavigator } from "./settings.navigator";
 import { PharmaciesNavigator } from "./pharmacies.navigator";
+import { colors } from "../theme/colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,8 @@ export const AppNavigation = () => {
                     <Tab.Navigator
                         screenOptions={{
                             headerShown: false,
+                            tabBarActiveTintColor: colors.brand.primary,
+                            tabBarInactiveTintColor: colors.brand.muted,
                         }}
                     >
                         <Tab.Screen name="Pharmacy"

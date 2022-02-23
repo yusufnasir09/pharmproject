@@ -11,7 +11,7 @@ import { View } from "react-native";
 export const PharmacyInfoCard = ({ pharmacy }) => {
     const ratingArray = Array.from(new Array(Math.floor(pharmacy.rating)));
     return (
-        <PharmacyCard elevation={5}>
+        <PharmacyCard elevation={2}>
             <View>
                 <Favourite pharmacy={pharmacy} />
                 <PharmacyCardCover key={pharmacy.name} source={{ uri: pharmacy.photos[0] }} />
